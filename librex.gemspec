@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 APP_NAME = "librex"
-VERSION = "0.0.54"
-REVISION = "13882"
+VERSION = "0.0.55"
+REVISION = "14187"
 
 Gem::Specification.new do |s|
 	s.name									= APP_NAME
@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
 	s.description						= "Rex provides a variety of classes useful for security testing and exploit development. Based on SVN Revision #{REVISION}"
 	s.license								= "BSD"
 	
-	s.authors								= ["Metasploit Development Team", "Jacob Hammack"]
-	s.email									= ["hdm@metasploit.com", "jacob.hammack@hammackj.com"]
+	s.authors								= ["HD Moore", "Jacob Hammack"]
+	s.email									= ["hd_moore@rapid7.com", "jacob.hammack@hammackj.com"]
 	
 	s.files									= Dir['[A-Z]*'] + Dir['lib/**/*']
 	s.require_paths					= ["lib"]
