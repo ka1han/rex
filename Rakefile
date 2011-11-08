@@ -28,14 +28,10 @@ task :update do
 	tdir = "tmp" + rand(0x100000000).to_s + rand(0x100000000).to_s 
 	
 	puts "[*] Checking out Metasploit trunk..."
-	results = `svn co https://www.metasploit.com/svn/framework3/trunk/lib/ #{tdir}`
-	rev = results.match(/^Checked out revision (.*)\.$/)
+	results = `svn export https://www.metasploit.com/svn/framework3/trunk/lib/ #{tdir}`
+	rev = results.match(/^Exported revision (.*)\.$/)
 	puts "[*] Checkout Revision: #{rev[1]}"
-	
-	puts "[*] Purging SVN directories..."
-	system("find #{tdir} -name .svn | xargs -i rm -rf {}")
-	
-	
+
 	puts "[*] Copying new files..."
 	::FileUtils.cp( ::File.join(tdir, "rex.rb"), "lib")
 	::FileUtils.cp_r( ::File.join(tdir, "rex"), ::File.join("lib", "rex") )
