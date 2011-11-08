@@ -25,16 +25,16 @@ task :update do
 	system "mkdir lib &> /dev/null"
 	
 	puts "[*] Checking out Metasploit trunk"
-	results = `svn co https://www.metasploit.com/svn/framework3/trunk/ /tmp/msftmp`
+	results = `svn co https://www.metasploit.com/svn/framework3/trunk/lib/ /tmp/msftmp`
 	rev = results.match(/^Checked out revision (.*)\.$/)
 	
 	puts "[*] Checkout Revision: #{rev[1]}"
 	
 	puts "[*] Copying new files"
-	system "mv /tmp/msftmp/lib/rex.rb lib/ &> /dev/null"
-	system "mv /tmp/msftmp/lib/rex.rb.ts.rb lib/ &> /dev/null"
-	system "mv /tmp/msftmp/lib/rex/ lib/ &> /dev/null"
-	system "find . -iname '.svn' -exec rm -rf {} \\; &> /dev/null"
+	system "mv /tmp/msftmp/rex.rb lib/ &> /dev/null"
+	system "mv /tmp/msftmp/rex.rb.ts.rb lib/ &> /dev/null"
+	system "mv /tmp/msftmp/rex/ lib/ &> /dev/null"
+	system "find . -iname .svn | xargs -i rm -rf {}"
 	system "git add lib/ &> /dev/null"
 
 	puts "[*] Cleaning up tmp files"	
