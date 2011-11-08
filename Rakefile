@@ -20,7 +20,7 @@ end
 
 task :update do
 	puts "[*] Removing old Rex code..."
-	system "git rm -rf lib/ &> /dev/null"
+	system "git rm -rf lib/ >/dev/null 2>&1"
 	::FileUtils.rm_rf("lib")
 	::FileUtils.mkdir("lib")
 
@@ -33,7 +33,7 @@ task :update do
 	puts "[*] Checkout Revision: #{rev[1]}"
 	
 	puts "[*] Purging SVN directories..."
-	system("find tmp#{tdir} -name .svn | xargs -i rm -rf {}")
+	system("find #{tdir} -name .svn | xargs -i rm -rf {}")
 	
 	
 	puts "[*] Copying new files..."
