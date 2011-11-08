@@ -5,12 +5,12 @@ require 'fileutils'
 task :build => :update do
 	Rake::Task['clean'].execute
 	puts "[*] Building librex.gemspec"
-  system "gem build librex.gemspec &> /dev/null"
+	system "gem build librex.gemspec &> /dev/null"
 end
  
 task :release => :build do
 	puts "[*] Pushing librex to rubygems.org"
-  system "gem push librex-*.gem &> /dev/null"
+	system "gem push librex-*.gem &> /dev/null"
 	Rake::Task['clean'].execute
 end
 
@@ -26,6 +26,8 @@ task :update do
 
 	
 	tdir = "tmp" + rand(0x100000000).to_s + rand(0x100000000).to_s 
+
+	begin
 	
 	puts "[*] Checking out Metasploit trunk..."
 	results = `svn export https://www.metasploit.com/svn/framework3/trunk/lib/ #{tdir}`
@@ -89,7 +91,13 @@ task :update do
 	system "git commit -a -m \"Updated for Revision #{rev[1]}\" &> /dev/null"
 	puts "[*] Commiting and Pushing Updates for Revision #{rev[1]}"
 	system "git push &> /dev/null"
+
+	rescue ::Exception
+		$stderr.puts "[-] Error: #{$!.class} #{$!} #{$!.backtrace}"
+	ensure
+		::FileUtils.rm_rf(tdir)		
+	end
 	
-	#Twitter tweet for the update, I am that lazy yes.
+	# Twitter tweet for the update, I am that lazy yes
 	puts "[*] Updated librex to v#{version} based on SVN Revision: #{rev[1]} of the #metasploit rex library. Available in rubygems."
 end
