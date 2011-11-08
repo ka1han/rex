@@ -1,4 +1,6 @@
 # encoding: utf-8
+
+require 'fileutils'
  
 task :build => :update do
 	Rake::Task['clean'].execute
@@ -17,28 +19,31 @@ task :clean do
 end
 
 task :update do
-	puts "[*] Removing old rex code"
-	system "git rm lib/rex.rb &> /dev/null"
-	system "git rm lib/rex.rb.ts.rb &> /dev/null"
+	puts "[*] Removing old Rex code..."
 	system "git rm -rf lib/ &> /dev/null"
-	system "rm -rf lib/ &> /dev/null"  #So there is a cvs file in the msf stuff that breaks things
-	system "mkdir lib &> /dev/null"
+	::FileUtils.rm_rf("lib")
+	::FileUtils.mkdir("lib")
+
 	
-	puts "[*] Checking out Metasploit trunk"
-	results = `svn co https://www.metasploit.com/svn/framework3/trunk/lib/ /tmp/msftmp`
+	tdir = "tmp" + rand(0x100000000).to_s + rand(0x100000000).to_s 
+	
+	puts "[*] Checking out Metasploit trunk..."
+	results = `svn co https://www.metasploit.com/svn/framework3/trunk/lib/ #{tdir}`
 	rev = results.match(/^Checked out revision (.*)\.$/)
-	
 	puts "[*] Checkout Revision: #{rev[1]}"
 	
-	puts "[*] Copying new files"
-	system "mv /tmp/msftmp/rex.rb lib/ &> /dev/null"
-	system "mv /tmp/msftmp/rex.rb.ts.rb lib/ &> /dev/null"
-	system "mv /tmp/msftmp/rex/ lib/ &> /dev/null"
-	system "find . -iname .svn | xargs -i rm -rf {}"
+	puts "[*] Purging SVN directories..."
+	system("find tmp#{tdir} -name .svn | xargs -i rm -rf {}")
+	
+	
+	puts "[*] Copying new files..."
+	::FileUtils.cp( ::File.join(tdir, "rex.rb"), "lib")
+	::FileUtils.cp_r( ::File.join(tdir, "rex"), ::File.join("lib", "rex") )
+	
 	system "git add lib/ &> /dev/null"
 
-	puts "[*] Cleaning up tmp files"	
-	system "rm -rf /tmp/msftmp"
+	puts "[*] Cleaning up tmp files..."	
+	::FileUtils.rm_rf(tdir)
 	
 	version = ""
 	
