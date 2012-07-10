@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
 require 'rex/encoder/alpha2/generic'
 
@@ -8,12 +9,6 @@ module Alpha2
 
 class UnicodeUpper < Generic
 	def self.default_accepted_chars ; ('B' .. 'Z').to_a + ('0' .. '9').to_a ; end
-
-	def self.gen_base_set(max)
-		Rex::Text.shuffle_a(
-			[* ( (0..(max-1)).map { |i| i *= 0x10 } ) ]
-		)
-	end
 	
 	def self.gen_second(block, base)
 		# unicode uses additive encoding
@@ -21,8 +16,8 @@ class UnicodeUpper < Generic
 	end
 
 	def self.gen_decoder_prefix(reg, offset)
-		if (offset > 8)
-			raise "Critical: Offset is greater than 8"
+		if (offset > 6)
+			raise "Critical: Offset is greater than 6"
 		end
 
 		# offset untested for unicode :(

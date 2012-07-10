@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
-# $Id: elfscan.rb 5398 2008-02-06 17:31:57Z ramon $
+# $Id: elfscan.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 module Rex
 module ElfScan

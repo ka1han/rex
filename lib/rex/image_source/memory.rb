@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
-# $Id: memory.rb 5401 2008-02-09 04:35:21Z ramon $
+# $Id: memory.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 require 'rex/image_source/image_source'
 require 'rex/struct2'

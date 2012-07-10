@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
-# $Id: section.rb 12196 2011-04-01 00:51:33Z egypt $
+# $Id: section.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 require 'rex/peparsey/exceptions'
 require 'rex/peparsey/pebase'

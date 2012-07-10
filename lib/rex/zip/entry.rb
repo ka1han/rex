@@ -1,5 +1,6 @@
+# -*- coding: binary -*-
 ##
-# $Id: entry.rb 12718 2011-05-25 16:45:20Z egypt $
+# $Id: entry.rb 15548 2012-06-29 06:08:20Z rapid7 $
 ##
 
 module Rex
@@ -14,8 +15,8 @@ class Entry
 	attr_reader :data
 
 	def initialize(fname, data, compmeth, timestamp=nil, attrs=nil, xtra=nil, comment=nil)
-		@name = fname
-		@data = data
+		@name = fname.unpack("C*").pack("C*")
+		@data = data.unpack("C*").pack("C*")
 		@xtra = xtra
 		@xtra ||= ''
 		@comment = comment
@@ -37,7 +38,7 @@ class Entry
 	end
 
 	def data=(val)
-		@data = val
+		@data = val.unpack("C*").pack("C*")
 		compress
 	end
 
@@ -84,11 +85,9 @@ class Entry
 	# Return the compressed data in a format suitable for adding to an Archive
 	#
 	def pack
-		ret = ''
-
 		#  - lfh 1
 		lfh = LocalFileHdr.new(self)
-		ret << lfh.pack
+		ret = lfh.pack
 
 		#  - data 1
 		if (@compdata)

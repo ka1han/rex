@@ -1,6 +1,7 @@
+# -*- coding: binary -*-
 ##
-# $Id: header.rb 10394 2010-09-20 08:06:27Z jduck $
-# Version: $Revision: 10394 $
+# $Id: header.rb 15548 2012-06-29 06:08:20Z rapid7 $
+# Version: $Revision: 15548 $
 ##
 
 ##

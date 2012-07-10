@@ -1,5 +1,6 @@
+# -*- coding: binary -*-
 ##
-# $Id: archive.rb 12718 2011-05-25 16:45:20Z egypt $
+# $Id: archive.rb 15549 2012-06-29 06:09:05Z rapid7 $
 ##
 
 module Rex

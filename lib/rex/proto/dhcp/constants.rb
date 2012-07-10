@@ -1,4 +1,5 @@
-# $Id: constants.rb 12375 2011-04-20 14:21:36Z jduck $
+# -*- coding: binary -*-
+# $Id: constants.rb 15548 2012-06-29 06:08:20Z rapid7 $
 require 'rex/proto/dhcp'
 
 module Rex

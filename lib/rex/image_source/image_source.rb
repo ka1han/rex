@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
-# $Id: image_source.rb 5401 2008-02-09 04:35:21Z ramon $
+# $Id: image_source.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 module Rex
 module ImageSource

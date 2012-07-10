@@ -1,4 +1,5 @@
-# $Id: constants.rb 9962 2010-08-06 17:21:22Z jduck $
+# -*- coding: binary -*-
+# $Id: constants.rb 15548 2012-06-29 06:08:20Z rapid7 $
 require 'rex/proto/tftp'
 
 module Rex

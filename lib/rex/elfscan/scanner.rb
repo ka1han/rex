@@ -1,5 +1,6 @@
+# -*- coding: binary -*-
 
-# $Id: scanner.rb 7320 2009-11-02 17:09:13Z hdm $
+# $Id: scanner.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 module Rex
 module ElfScan

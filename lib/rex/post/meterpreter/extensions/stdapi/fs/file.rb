@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
 require 'rex/post/file'
 require 'rex/post/meterpreter/channel'
@@ -298,14 +299,14 @@ class File < Rex::Post::Meterpreter::Extensions::Stdapi::Fs::IO
 	#
 	# Synonym for sysseek.
 	#
-	def seek(offset, whence = SEEK_SET)
+	def seek(offset, whence = ::IO::SEEK_SET)
 		return self.sysseek(offset, whence)
 	end
 
 	#
 	# Seeks to the supplied offset based on the supplied relativity.
 	#
-	def sysseek(offset, whence = SEEK_SET)
+	def sysseek(offset, whence = ::IO::SEEK_SET)
 		return self.filed.seek(offset, whence)
 	end
 

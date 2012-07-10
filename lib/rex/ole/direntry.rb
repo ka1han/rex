@@ -1,6 +1,7 @@
+# -*- coding: binary -*-
 ##
-# $Id: direntry.rb 8457 2010-02-11 18:36:38Z jduck $
-# Version: $Revision: 8457 $
+# $Id: direntry.rb 15548 2012-06-29 06:08:20Z rapid7 $
+# Version: $Revision: 15548 $
 ##
 
 ##

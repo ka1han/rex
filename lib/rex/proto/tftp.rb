@@ -1,4 +1,5 @@
-# $Id: tftp.rb 9962 2010-08-06 17:21:22Z jduck $
+# -*- coding: binary -*-
+# $Id: tftp.rb 15548 2012-06-29 06:08:20Z rapid7 $
 #
 # TFTP Server implementation according to:
 #
@@ -10,3 +11,4 @@
 
 require 'rex/proto/tftp/constants'
 require 'rex/proto/tftp/server'
+require 'rex/proto/tftp/client'

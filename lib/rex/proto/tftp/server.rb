@@ -1,4 +1,5 @@
-# $Id: server.rb 13551 2011-08-12 20:26:03Z scriptjunkie $
+# -*- coding: binary -*-
+# $Id: server.rb 15548 2012-06-29 06:08:20Z rapid7 $
 require 'rex/socket'
 require 'rex/proto/tftp'
 

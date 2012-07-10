@@ -1,4 +1,5 @@
-# $Id: server.rb 13779 2011-09-23 15:12:19Z scriptjunkie $
+# -*- coding: binary -*-
+# $Id: server.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 require 'rex/socket'
 require 'rex/proto/dhcp'
@@ -87,7 +88,7 @@ class Server
 				self.served_over = hash['HOSTSTART'].to_i
 			end
 		end
-		
+
 		self.leasetime = 600
 		self.relayip = "\x00\x00\x00\x00" # relay ip - not currently suported
 		self.pxeconfigfile = "update2"
@@ -268,7 +269,7 @@ protected
 		if messageType == DHCPDiscover  #DHCP Discover - send DHCP Offer
 			pkt << [DHCPOffer].pack('C')
 			# check if already served an Ack based on hw addr (MAC address)
-			# if serveOnce & PXE, don't reply to another PXE request 
+			# if serveOnce & PXE, don't reply to another PXE request
 			# if serveOnce & ! PXE, don't reply to anything
 			if self.serveOnce == true and self.served.has_key?(buf[28..43]) and
 					self.served[buf[28..43]][1] and (pxeclient == false or self.servePXE == false)

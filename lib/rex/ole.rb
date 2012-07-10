@@ -1,6 +1,7 @@
+# -*- coding: binary -*-
 ##
-# $Id: ole.rb 11444 2010-12-29 17:07:46Z jduck $
-# Version: $Revision: 11444 $
+# $Id: ole.rb 15548 2012-06-29 06:08:20Z rapid7 $
+# Version: $Revision: 15548 $
 ##
 
 ##

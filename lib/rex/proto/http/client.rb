@@ -1,3 +1,4 @@
+# -*- coding: binary -*-
 require 'rex/socket'
 require 'rex/proto/http'
 require 'rex/text'
@@ -9,8 +10,8 @@ module Http
 ###
 #
 # Acts as a client to an HTTP server, sending requests and receiving responses.
-# 
-# See the RFC: http://www.w3.org/Protocols/rfc2616/rfc2616.html 
+#
+# See the RFC: http://www.w3.org/Protocols/rfc2616/rfc2616.html
 #
 ###
 class Client
@@ -99,16 +100,22 @@ class Client
 	#
 	def set_config(opts = {})
 		opts.each_pair do |var,val|
+			# Default type is string
 			typ = self.config_types[var] || 'string'
 
+			# These are enum types
 			if(typ.class.to_s == 'Array')
 				if not typ.include?(val)
 					raise RuntimeError, "The specified value for #{var} is not one of the valid choices"
 				end
 			end
 
+			# The caller should have converted these to proper ruby types, but
+			# take care of the case where they didn't before setting the
+			# config.
+
 			if(typ == 'bool')
-				val = (val =~ /^(t|y|1)$/i ? true : false)
+				val = (val =~ /^(t|y|1)$/i ? true : false || val === true)
 			end
 
 			if(typ == 'integer')
@@ -139,6 +146,11 @@ class Client
 		c_conn = opts['connection']
 		c_auth = opts['basic_auth'] || config['basic_auth'] || ''
 
+		# An agent parameter was specified, but so was a header, prefer the header
+		if c_ag and c_head.keys.map{|x| x.downcase }.include?('user-agent')
+			c_ag = nil
+		end
+		
 		uri    = set_uri(c_uri)
 
 		req = ''
@@ -157,6 +169,7 @@ class Client
 		req << set_version(c_prot, c_vers)
 		req << set_host_header(c_host)
 		req << set_agent_header(c_ag)
+
 
 		if (c_auth.length > 0)
 			req << set_basic_auth_header(c_auth)
@@ -373,7 +386,7 @@ class Client
 
 					buff = conn.get_once(-1, 1)
 					rv   = resp.parse( buff || '' )
-		
+
 				##########################################################################
 				# XXX: NOTE: BUG: get_once currently (as of r10042) rescues "Exception"
 				# As such, the following rescue block will ever be reached.  -jjd
@@ -678,9 +691,20 @@ class Client
 	#
 	# Return the HTTP Host header
 	#
-	def set_host_header(host)
+	def set_host_header(host=nil)
 		return "" if self.config['uri_full_url']
 		host ||= self.config['vhost']
+
+		# IPv6 addresses must be placed in brackets
+		if Rex::Socket.is_ipv6?(host)
+			host = "[#{host}]"
+		end
+
+		# The port should be appended if non-standard
+		if not [80,443].include?(self.port)
+			host = host + ":#{port}"
+		end
+
 		set_formatted_header("Host", host)
 	end
 

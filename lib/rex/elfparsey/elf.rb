@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 
-# $Id: elf.rb 6615 2009-06-03 01:39:54Z hdm $
+# $Id: elf.rb 15548 2012-06-29 06:08:20Z rapid7 $
 
 require 'rex/elfparsey/elfbase'
 require 'rex/elfparsey/exceptions'

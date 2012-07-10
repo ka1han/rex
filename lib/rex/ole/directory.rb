@@ -1,6 +1,7 @@
+# -*- coding: binary -*-
 ##
-# $Id: directory.rb 9287 2010-05-12 05:33:35Z jduck $
-# Version: $Revision: 9287 $
+# $Id: directory.rb 15548 2012-06-29 06:08:20Z rapid7 $
+# Version: $Revision: 15548 $
 ##
 
 ##

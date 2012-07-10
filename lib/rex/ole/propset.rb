@@ -1,6 +1,7 @@
+# -*- coding: binary -*-
 ##
-# $Id: propset.rb 12196 2011-04-01 00:51:33Z egypt $
-# Version: $Revision: 12196 $
+# $Id: propset.rb 15548 2012-06-29 06:08:20Z rapid7 $
+# Version: $Revision: 15548 $
 ##
 
 ##
@@ -113,7 +114,7 @@ class PropertySetStream
 			@os_platform
 		].pack('vvvv')
 		buf << @clsid.pack
-		buf << [@propsets.length].pack('V')			
+		buf << [@propsets.length].pack('V')
 
 		# Pack all the PropertySet children
 		data = []

@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# -*- coding: binary -*-
 #
-# $Revision: 9333 $
+# $Revision: 15548 $
 #
-# $Id: server.rb.ut.rb 9333 2010-05-21 00:03:04Z jduck $
+# $Id: server.rb.ut.rb 15548 2012-06-29 06:08:20Z rapid7 $
 #
 
 require 'rex/compat'
