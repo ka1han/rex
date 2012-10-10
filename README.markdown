@@ -4,7 +4,7 @@ An re-packaging of the Rex library included in the Metasploit Framework for use 
 made official by the Rapid7 development team. The upstream of this package is the rex subdirectory of https://github.com/rapid7/metasploit-framework
 
 Currently based on:
-SVN Revision: 15602
+SVN Revision: 15951
 
 # Notes
 
